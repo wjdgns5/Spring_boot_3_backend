@@ -14,12 +14,13 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api")
 public class BlogApiController {
 
     private final BlogService blogService;
 
     // AddArticleRequest
-    @PostMapping("/api/articles")
+    @PostMapping("/articles")
     public ResponseEntity<Article> addArticle(@RequestBody AddArticleRequest request) {
 
         Article savedArticle = blogService.save(request);
@@ -29,7 +30,7 @@ public class BlogApiController {
     }
 
 
-    @GetMapping("/api/articles")
+    @GetMapping("/articles")
     // ArticleResponse : 응답을 가져오는 DTO
     public ResponseEntity<List<ArticleResponse>> findAllArticles() {
 
@@ -55,14 +56,14 @@ public class BlogApiController {
          */
     }
 
-    @GetMapping("/api/article/{id}")
+    @GetMapping("/article/{id}")
     public ResponseEntity<ArticleResponse> findArticle(@PathVariable long id) {
         Article article = blogService.findById(id);
         return ResponseEntity.ok()
                 .body(new ArticleResponse(article));
     }
 
-    @DeleteMapping("/api/articles/{id}")
+    @DeleteMapping("/articles/{id}")
     public ResponseEntity<Void> deleteArticle(@PathVariable long id) {
         blogService. delete(id);
 
@@ -70,7 +71,7 @@ public class BlogApiController {
                 .build();
     }
 
-    @PutMapping("/api/articles/{id}")
+    @PutMapping("/articles/{id}")
     public ResponseEntity<Article> updateArticle(@PathVariable long id,
                                                  @RequestBody UpdateArticleRequest request) {
 
