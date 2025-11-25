@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -38,6 +39,23 @@ public class BlogViewController {
         Article article = blogService.findById(id);
         model.addAttribute("article", new ArticleViewResponse(article));
         return "article";
+    }
+
+    
+    /** 수정 **/
+    @GetMapping("/new-article")
+    // id 키를 가진 쿼리 파라미터의 값을 id 변수에 매핑(id는 없을 수도 있음)
+    public String newArticle(@RequestParam(required = false) /**  파라미터 없어도 에러 내지 말고 허용 **/
+                                Long id, Model model) {
+
+        if (id == null) { // id가 없으면 생성
+            model.addAttribute("article", new ArticleViewResponse());
+        } else { // id 가 있으면 수정
+            Article article = blogService.findById(id);
+            model.addAttribute("article", new ArticleViewResponse(article));
+        }
+
+        return "newArticle";
     }
 
 
