@@ -18,6 +18,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BlogViewController {
 
+    /**
+     * “/articles, /new-article 같은 화면(HTML)을 보여주려고 만든 컨트롤러”
+     */
+
     private final BlogService blogService;
 
     /**

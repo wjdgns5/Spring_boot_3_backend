@@ -15,6 +15,10 @@ import java.util.List;
 public class ExampleController {
 
     /**
+     * “Thymeleaf 연습용 예제 페이지를 만들려고 만든 컨트롤러”
+     */
+
+    /**
      * http://localhost:8080/thymeleaf/example
      * @return
      */

@@ -17,6 +17,10 @@ import java.util.List;
 @RequestMapping("/api")
 public class BlogApiController {
 
+    /**
+     * “/api/articles 로 시작하는 REST API를 처리하려고 만든 컨트롤러”
+     */
+
     private final BlogService blogService;
 
     // AddArticleRequest

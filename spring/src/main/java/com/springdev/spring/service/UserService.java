@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
+    /**
+     * “회원가입 기능을 담당하기 위해 만든 서비스”
+     */
+
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 

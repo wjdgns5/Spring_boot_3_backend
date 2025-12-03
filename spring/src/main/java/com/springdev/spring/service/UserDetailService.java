@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 // 스프링 시큐리티에서 사용자 정보를 가져오는 인터페이스
 public class UserDetailService implements UserDetailsService {
 
+    /**
+     * “Spring Security가 로그인할 때, 이메일로 유저를 찾아오게 하려고 만든 서비스”
+     */
+
     private final UserRepository userRepository;
 
     // 사용자 이름(email)으로 사용자의 정보를 가져오는 메서드

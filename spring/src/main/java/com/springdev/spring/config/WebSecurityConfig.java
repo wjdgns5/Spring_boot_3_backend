@@ -19,6 +19,10 @@ import static org.springframework.boot.autoconfigure.security.servlet.PathReques
 @Configuration
 public class WebSecurityConfig {
 
+    /**
+     * “어떤 URL은 로그인 없이 열고, 어떤 URL은 로그인 필요하게 만들려고 만든 설정 클래스”
+     */
+
     private final UserDetailService userDetailService;
 
     // 1. 스프링 시큐리티 기능 비활성화

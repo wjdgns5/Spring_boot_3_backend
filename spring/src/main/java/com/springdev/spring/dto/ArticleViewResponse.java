@@ -10,6 +10,10 @@ import java.time.LocalDateTime;
 @Getter
 public class ArticleViewResponse {
 
+    /**
+     * “상세/수정 화면에서 사용할 데이터 묶음 DTO”
+     */
+
     private Long id;
     private String title;
     private String content;

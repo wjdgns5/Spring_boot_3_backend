@@ -14,6 +14,10 @@ import java.util.List;
 @RequiredArgsConstructor // final이 붙거나 @NotNull이 붙은 필드의 생성자 추가
 public class BlogService {
 
+    /**
+     * “게시글 관련 비즈니스 로직을 모아두려고 만든 클래스”
+     */
+
     private final BlogRepository blogRepository;
 
     // 블로그 글 추가 메서드
@@ -39,12 +43,6 @@ public class BlogService {
     public Article update(long id, UpdateArticleRequest request) {
         Article article = blogRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not found : " + id));
-
-        System.out.println("----------BlogService----------");
-        System.out.println("long id : " + id);
-        System.out.println("request.getTitle() : " + request.getTitle());
-        System.out.println("request.getContent() : " + request.getContent());
-        System.out.println("-----------------------------------");
 
         article.update(request.getTitle(), request.getContent());
 

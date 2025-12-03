@@ -10,6 +10,9 @@ import lombok.NoArgsConstructor;
 @Getter
 public class AddArticleRequest {
 
+    /**
+     * 글 작성 요청(request body)을 받기 위해 만든 DTO
+     */
     private String title;
     private String content;
 

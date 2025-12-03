@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 public class UserApiController {
 
+    /**
+     * “회원가입 처리 & 로그아웃 처리를 위해 만든 컨트롤러”
+     */
+
     private final UserService userService;
 
     /**

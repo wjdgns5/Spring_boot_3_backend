@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class UpdateArticleRequest {
+    /**
+     * “글 수정 요청을 받기 위한 DTO”
+     */
     private String title;
     private String content;
 }
