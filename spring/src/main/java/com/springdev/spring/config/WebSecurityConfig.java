@@ -1,5 +1,6 @@
 package com.springdev.spring.config;
 
+import com.springdev.spring.config.jwt.TokenProvider;
 import com.springdev.spring.service.UserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
@@ -24,6 +26,7 @@ public class WebSecurityConfig {
      */
 
     private final UserDetailService userDetailService;
+    private final TokenProvider tokenProvider; // ✅ 추가
 
     // 1. 스프링 시큐리티 기능 비활성화
     @Bean
@@ -38,7 +41,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/signup", "/user").permitAll()
+                        .requestMatchers("/login", "/signup", "/user", "/api/token").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -50,6 +53,12 @@ public class WebSecurityConfig {
                         .invalidateHttpSession(true)
                 )
                 .csrf(csrf -> csrf.disable());
+
+                // ✅ JWT 필터를 UsernamePasswordAuthenticationFilter 앞에 끼워 넣기
+                http.addFilterBefore(
+                        new TokenAuthenticationFilter(tokenProvider),
+                        UsernamePasswordAuthenticationFilter.class
+        );
 
         return http.build();  // ✅ 이제 메서드 리턴 타입과 딱 맞음
     }
